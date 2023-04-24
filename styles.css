@@ -1,0 +1,114 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  flex-grow: 1;
+  background-color: #bad76e;
+  color: #452891;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 128px 0px;
+}
+
+.title {
+  font-size: 56px;
+  font-weight: bold;
+  margin-bottom: 36px;
+}
+
+.calculator {
+  background-color: #452891;
+  display: flex;
+  color: #bad76e;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.display {
+  background-color: #bad76e;
+  color: #452891;
+  font-weight: bold;
+  width: 360px;
+  height: 120px;
+  margin: 36px 24px;
+  font-size: 36px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 6px 12px;
+}
+
+.buttons {
+  display: flex;
+  width: 355px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background-color: #bad76e;
+  margin: 36px 24px;
+  padding: 24px 18px;
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.numOneToNine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  
+}
+
+.numberButton, .otherButton, .operatorButton, .numZeroButton {
+  width: 80px;
+  height: 80px;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.backSpaceButton, .clearButton  {
+  font-size: 26px;
+}
+
+.otherButtons {
+  display: flex;
+  gap: 12px;
+}
+
+.operators {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.numZero {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.numZeroButton{
+  height: 80px;
+  width: 264px;
+}
+
+.groupOne {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
