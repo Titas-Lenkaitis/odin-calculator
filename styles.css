@@ -36,14 +36,14 @@ body {
   background-color: #bad76e;
   color: #452891;
   font-weight: bold;
-  width: 360px;
+  width: 355px;
   height: 120px;
   margin: 36px 24px;
   font-size: 36px;
   display: flex;
   justify-content: end;
   align-items: center;
-  padding: 6px 12px;
+  padding: 0px 18px;
 }
 
 .buttons {
