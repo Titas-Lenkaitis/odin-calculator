@@ -5,8 +5,8 @@ body {
   margin: 0px;
   font-family: Arial, Helvetica, sans-serif;
   flex-grow: 1;
-  background-color: #bad76e;
-  color: #452891;
+  background: linear-gradient(to bottom, #00ccff 34%, #66ff66 100%);
+  color: #ffe761;
 }
 
 .content {
@@ -14,36 +14,44 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 128px 0px;
+  margin: 60px 0px;
 }
 
 .title {
   font-size: 56px;
   font-weight: bold;
   margin-bottom: 36px;
+  background-color: #ffe761;
+  color: #996518;
+  padding: 24px 48px;
+  border: 3px solid #996518;
+  border-radius: 1000px;
 }
 
 .calculator {
-  background-color: #452891;
+  background-color: #ffe761;
   display: flex;
-  color: #bad76e;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: 3px solid #996518;
+  border-radius: 52px;
 }
 
 .display {
-  background-color: #bad76e;
-  color: #452891;
+  background-color: #ddab3d;
+  color: #f9f7f3;
   font-weight: bold;
   width: 355px;
   height: 120px;
-  margin: 36px 24px;
+  margin: 48px 36px;
   font-size: 36px;
   display: flex;
   justify-content: end;
   align-items: center;
   padding: 0px 18px;
+  border: 2px solid #996518;
+  border-radius: 36px;
 }
 
 .buttons {
@@ -52,9 +60,11 @@ body {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background-color: #bad76e;
+  background-color: #ddab3d;
   margin: 36px 24px;
   padding: 24px 18px;
+  border: 2px solid #996518;
+  border-radius: 36px;
 }
 
 .numbers {
@@ -111,4 +121,55 @@ body {
   justify-content: center;
   align-items: center;
   gap: 12px;
+}
+
+.numberButton, .numZeroButton {
+  background-color: #ffacac;
+  color: #991818;
+  border: 2px solid #991818;
+  border-radius: 12px;
+}
+
+.numberButton:hover, .numZeroButton:hover {
+  background-color: #e28282;
+  transition-duration: 0.01s;
+}
+
+.numberButton:active, .numZeroButton:active {
+  background-color: #ffa0a0;
+  transition-duration: 0.008s;
+}
+
+.operatorButton {
+  background-color: #b1f8ff;
+  color: #06454b;
+  border: 2px solid #06454b;
+  border-radius: 12px;
+}
+
+.operatorButton:hover {
+  background-color: #8ce6ee;
+  transition-duration: 0.01s;
+}
+
+.operatorButton:active {
+  background-color: #b9f9ff;
+  transition-duration: 0.008s;
+}
+
+.otherButton {
+  background-color: #7df77d;
+  color: #135813;
+  border: 2px solid #135813 ;
+  border-radius: 12px;
+}
+
+.otherButton:hover {
+  background-color: #6ee26e;
+  transition-duration: 0.01s;
+}
+
+.otherButton:active {
+  background-color: #9ff59f;
+  transition-duration: 0.008s;
 }
