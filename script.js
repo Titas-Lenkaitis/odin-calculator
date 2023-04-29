@@ -1,20 +1,29 @@
 let num1 = "";
 let num2 = "";
 let operator = "";
-let display = document.querySelector(".display");
+const display = document.querySelector(".display");
 let displayText = "";
-let buttons = document.querySelector(".numbers");
+const buttons = document.querySelector(".numbers");
 let numButton = [];
-
+const operatorButtons = document.querySelector(".operators");
+let opButton = [];
 for (i = 0; i < 10; i++) {
   numButton[i] = document.querySelector(".num" + i);
-}
-for (i = 0; i < numButton.length; i++) {
   numButton[i].value = i;
 }
 
-addListenersForNum1();
+for (i = 0; i < 6; i++) {
+   opButton[i] = document.querySelector(".op" + i);
+}
 
+opButton[0].value = "+";
+opButton[1].value = "-";
+opButton[2].value = "*";
+opButton[3].value = "/";
+opButton[4].value = "=";
+
+buttons.addEventListener("click", addToNum1, false);
+operatorButtons.addEventListener("click", assignOperator, false);
 
 function add(num1, num2) {
   result = +num1 + +num2;
@@ -60,21 +69,30 @@ function addToNum1(evt) {
   return [addToDisplay(evt.target.value), num1];
 }
 
-function assignOperator(op) {
+function assignOperator(evt) {
+  if (typeof evt.target.value == "undefined") {
+    return
+  } else if (evt.target.value == "=") {
+    operate();
+  }
 
+  operator = evt.target.value;
+  buttons.removeEventListener("click", addToNum1, false);
+  buttons.addEventListener("click", addToNum2, false);
+  return [addToDisplay(" " + evt.target.value + " "), operator];
 }
 
-function addToNum2(num) {
-
+function addToNum2(evt) {
+  if (typeof evt.target.value !== "string") {
+    return;
+  }
+  console.log(evt.target.value);
+  num2 += evt.target.value;
+  return [addToDisplay(evt.target.value), num2];
 }
 
 function addToDisplay(thingToAdd) {
   displayText += thingToAdd;
   display.textContent = "" + displayText;
   return displayText;
-}
-
-
-function addListenersForNum1() {
-  buttons.addEventListener("click", addToNum1, false)
 }
