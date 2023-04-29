@@ -7,6 +7,8 @@ const buttons = document.querySelector(".numbers");
 let numButton = [];
 const operatorButtons = document.querySelector(".operators");
 let opButton = [];
+const clearButton = document.querySelector(".clearButton");
+
 for (i = 0; i < 10; i++) {
   numButton[i] = document.querySelector(".num" + i);
   numButton[i].value = i;
@@ -16,14 +18,18 @@ for (i = 0; i < 6; i++) {
    opButton[i] = document.querySelector(".op" + i);
 }
 
+
 opButton[0].value = "+";
 opButton[1].value = "-";
 opButton[2].value = "*";
 opButton[3].value = "/";
 opButton[4].value = "=";
 
+
 buttons.addEventListener("click", addToNum1, false);
 operatorButtons.addEventListener("click", assignOperator, false);
+clearButton.addEventListener("click", clear);
+
 
 function add(num1, num2) {
   result = +num1 + +num2;
@@ -74,8 +80,10 @@ function assignOperator(evt) {
     return
   } else if (evt.target.value == "=") {
     operate();
-    display.textContent = "" + result;
-    displayText = "";
+    answer = result;
+    clear()
+    display.textContent = "" + answer;
+    answer = 0;
   } else {
     operator = evt.target.value;
     buttons.removeEventListener("click", addToNum1, false);
@@ -97,4 +105,16 @@ function addToDisplay(thingToAdd) {
   displayText += thingToAdd;
   display.textContent = "" + displayText;
   return displayText;
+}
+
+function clear() {
+  displayText = "";
+  num1 = "";
+  num2 = "";
+  operator = "";
+  result = 0;
+  buttons.removeEventListener("click", addToNum2, false);
+  buttons.addEventListener("click", addToNum1, false);
+  display.textContent = "";
+  return [displayText, num1, num2, operator, result];
 }
