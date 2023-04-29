@@ -74,12 +74,14 @@ function assignOperator(evt) {
     return
   } else if (evt.target.value == "=") {
     operate();
+    display.textContent = "" + result;
+    displayText = "";
+  } else {
+    operator = evt.target.value;
+    buttons.removeEventListener("click", addToNum1, false);
+    buttons.addEventListener("click", addToNum2, false);
+    return [addToDisplay(" " + evt.target.value + " "), operator];
   }
-
-  operator = evt.target.value;
-  buttons.removeEventListener("click", addToNum1, false);
-  buttons.addEventListener("click", addToNum2, false);
-  return [addToDisplay(" " + evt.target.value + " "), operator];
 }
 
 function addToNum2(evt) {
