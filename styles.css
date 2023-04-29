@@ -52,6 +52,8 @@ body {
   padding: 0px 18px;
   border: 2px solid #996518;
   border-radius: 36px;
+  flex-wrap: wrap;
+  flex-grow: 1;
 }
 
 .buttons {
@@ -82,7 +84,7 @@ body {
   
 }
 
-.numberButton, .otherButton, .operatorButton, .numZeroButton {
+.numberButton, .otherButton, .operatorButton, .num0 {
   width: 80px;
   height: 80px;
   font-size: 36px;
@@ -110,7 +112,7 @@ body {
   justify-content: center;
 }
 
-.numZeroButton{
+.num0 {
   height: 80px;
   width: 264px;
 }
@@ -123,19 +125,19 @@ body {
   gap: 12px;
 }
 
-.numberButton, .numZeroButton {
+.numberButton, .num0 {
   background-color: #ffacac;
   color: #991818;
   border: 2px solid #991818;
   border-radius: 12px;
 }
 
-.numberButton:hover, .numZeroButton:hover {
+.numberButton:hover, .num0:hover {
   background-color: #e28282;
   transition-duration: 0.01s;
 }
 
-.numberButton:active, .numZeroButton:active {
+.numberButton:active, .num0:active {
   background-color: #ffa0a0;
   transition-duration: 0.008s;
 }
