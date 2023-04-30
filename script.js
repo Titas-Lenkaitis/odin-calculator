@@ -63,6 +63,12 @@ function operate() {
   } else {
     return "error";
   };
+  answer = result;
+    clear()
+    display.textContent = "" + answer;
+    num1 = answer;
+    displayText = "" + num1;
+    answer = 0;
 };
 
 
@@ -77,18 +83,14 @@ function addToNum1(evt) {
 
 function assignOperator(evt) {
   if (typeof evt.target.value == "undefined") {
-    return
+    return;
   } else if (evt.target.value == "=") {
     operate();
-    answer = result;
-    clear()
-    display.textContent = "" + answer;
-    answer = 0;
   } else {
     operator = evt.target.value;
     buttons.removeEventListener("click", addToNum1, false);
     buttons.addEventListener("click", addToNum2, false);
-    return [addToDisplay(" " + evt.target.value + " "), operator];
+    return [addToDisplay(evt.target.value), operator];
   }
 }
 
