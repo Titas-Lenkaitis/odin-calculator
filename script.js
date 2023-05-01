@@ -90,8 +90,25 @@ function assignOperator(evt) {
     operator = evt.target.value;
     buttons.removeEventListener("click", addToNum1, false);
     buttons.addEventListener("click", addToNum2, false);
+    operatorButtons.removeEventListener("click", assignOperator, false);
+    operatorButtons.addEventListener("click", assignOperator2, false);
     return [addToDisplay(evt.target.value), operator];
   }
+}
+
+function assignOperator2(evt) {
+  if (typeof evt.target.value == "undefined") {
+    return;
+  } else {
+    operate();
+    buttons.removeEventListener("click", addToNum1, false);
+    buttons.addEventListener("click", addToNum2, false);
+    operator = evt.target.value
+    if (operator == "=") {
+      return;
+    }
+    return [addToDisplay(evt.target.value), operator];
+  } 
 }
 
 function addToNum2(evt) {
