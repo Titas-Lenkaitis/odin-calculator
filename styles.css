@@ -43,7 +43,7 @@ body {
   color: #f9f7f3;
   font-weight: bold;
   width: 355px;
-  height: 120px;
+  min-height: 120px;
   margin: 48px 36px;
   font-size: 36px;
   display: flex;
@@ -54,6 +54,9 @@ body {
   border-radius: 36px;
   flex-wrap: wrap;
   flex-grow: 1;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .buttons {
