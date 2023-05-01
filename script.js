@@ -64,11 +64,11 @@ function operate() {
     return "error";
   };
   answer = result;
-    clear()
-    display.textContent = "" + answer;
-    num1 = answer;
-    displayText = "" + num1;
-    answer = 0;
+  clear()
+  display.textContent = "" + answer;
+  num1 = answer;
+  displayText = "" + num1;
+  answer = 0;
 };
 
 
