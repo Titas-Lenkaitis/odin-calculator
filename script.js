@@ -8,7 +8,7 @@ let numButton = [];
 const operatorButtons = document.querySelector(".operators");
 let opButton = [];
 const clearButton = document.querySelector(".clearButton");
-
+const floatButton = document.querySelector(".floatButton");
 for (i = 0; i < 10; i++) {
   numButton[i] = document.querySelector(".num" + i);
   numButton[i].value = i;
@@ -24,11 +24,12 @@ opButton[1].value = "-";
 opButton[2].value = "*";
 opButton[3].value = "/";
 opButton[4].value = "=";
-
+floatButton.value = ".";
 
 buttons.addEventListener("click", addToNum1, false);
 operatorButtons.addEventListener("click", assignOperator, false);
 clearButton.addEventListener("click", clear);
+floatButton.addEventListener("click", addDecimalPoint1);
 
 
 function add(num1, num2) {
@@ -76,7 +77,6 @@ function addToNum1(evt) {
   if (typeof evt.target.value !== "string") {
     return;
   }
-  console.log(evt.target.value);
   num1 += evt.target.value;
   return [addToDisplay(evt.target.value), num1];
 }
@@ -92,6 +92,8 @@ function assignOperator(evt) {
     buttons.addEventListener("click", addToNum2, false);
     operatorButtons.removeEventListener("click", assignOperator, false);
     operatorButtons.addEventListener("click", assignOperator2, false);
+    floatButton.addEventListener("click", addDecimalPoint2);
+    floatButton.removeEventListener("click", addDecimalPoint1);
     return [addToDisplay(evt.target.value), operator];
   }
 }
@@ -103,9 +105,13 @@ function assignOperator2(evt) {
     operate();
     buttons.removeEventListener("click", addToNum1, false);
     buttons.addEventListener("click", addToNum2, false);
+    floatButton.addEventListener("click", addDecimalPoint2);
+    floatButton.removeEventListener("click", addDecimalPoint1);
     operator = evt.target.value
     if (operator == "=") {
-      return;
+      operator = "";
+      floatButton.removeEventListener("click", addDecimalPoint2);
+      return operator;
     }
     return [addToDisplay(evt.target.value), operator];
   } 
@@ -134,6 +140,32 @@ function clear() {
   result = 0;
   buttons.removeEventListener("click", addToNum2, false);
   buttons.addEventListener("click", addToNum1, false);
+  floatButton.removeEventListener("click", addDecimalPoint1);
+  floatButton.removeEventListener("click", addDecimalPoint2);
   display.textContent = "";
   return [displayText, num1, num2, operator, result];
+}
+
+function addDecimalPoint1() {
+  num1 = num1.toString();
+  console.log(num1);
+  if (num1.includes(".") == true) {
+    floatButton.removeEventListener("click", addDecimalPoint1);
+    return;
+  }
+  num1 += ".";
+  floatButton.removeEventListener("click", addDecimalPoint1);
+  return [addToDisplay("."), num1];
+}
+
+function addDecimalPoint2() {
+  num2.toString();
+  console.log(num2);
+  if (num2.includes(".")) {
+    floatButton.removeEventListener("click", addDecimalPoint2);
+    return;
+  }
+  num2 += ".";
+  floatButton.removeEventListener("click", addDecimalPoint2);
+  return [addToDisplay("."), num2];
 }
