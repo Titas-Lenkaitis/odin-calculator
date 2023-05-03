@@ -9,6 +9,7 @@ const operatorButtons = document.querySelector(".operators");
 let opButton = [];
 const clearButton = document.querySelector(".clearButton");
 const floatButton = document.querySelector(".floatButton");
+const backButton = document.querySelector(".backSpaceButton")
 for (i = 0; i < 10; i++) {
   numButton[i] = document.querySelector(".num" + i);
   numButton[i].value = i;
@@ -30,7 +31,7 @@ buttons.addEventListener("click", addToNum1, false);
 operatorButtons.addEventListener("click", assignOperator, false);
 clearButton.addEventListener("click", clear);
 floatButton.addEventListener("click", addDecimalPoint1);
-
+backButton.addEventListener("click", backSpace1);
 
 function add(num1, num2) {
   result = +num1 + +num2;
@@ -94,6 +95,8 @@ function assignOperator(evt) {
     operatorButtons.addEventListener("click", assignOperator2, false);
     floatButton.addEventListener("click", addDecimalPoint2);
     floatButton.removeEventListener("click", addDecimalPoint1);
+    backButton.removeEventListener("click", backSpace1);
+    backButton.addEventListener("click", backSpace2);
     return [addToDisplay(evt.target.value), operator];
   }
 }
@@ -107,10 +110,14 @@ function assignOperator2(evt) {
     buttons.addEventListener("click", addToNum2, false);
     floatButton.addEventListener("click", addDecimalPoint2);
     floatButton.removeEventListener("click", addDecimalPoint1);
+    backButton.removeEventListener("click", backSpace1);
+    backButton.addEventListener("click", backSpace2);
     operator = evt.target.value
     if (operator == "=") {
       operator = "";
       floatButton.removeEventListener("click", addDecimalPoint2);
+      backButton.removeEventListener("click", backSpace2);
+      backButton.addEventListener("click", backSpace1);
       return operator;
     }
     return [addToDisplay(evt.target.value), operator];
@@ -123,6 +130,8 @@ function addToNum2(evt) {
   }
   console.log(evt.target.value);
   num2 += evt.target.value;
+  backButton.removeEventListener("click", backSpace2);
+  backButton.addEventListener("click", backSpace3);
   return [addToDisplay(evt.target.value), num2];
 }
 
@@ -142,6 +151,9 @@ function clear() {
   buttons.addEventListener("click", addToNum1, false);
   floatButton.removeEventListener("click", addDecimalPoint1);
   floatButton.removeEventListener("click", addDecimalPoint2);
+  backButton.removeEventListener("click", backSpace3);
+  backButton.removeEventListener("click", backSpace2);
+  backButton.addEventListener("click", backSpace1);
   display.textContent = "";
   return [displayText, num1, num2, operator, result];
 }
@@ -168,4 +180,44 @@ function addDecimalPoint2() {
   num2 += ".";
   floatButton.removeEventListener("click", addDecimalPoint2);
   return [addToDisplay("."), num2];
+}
+
+function backSpace1() {
+  num1 = num1.toString();
+  num1 = num1.substring(0, num1.length - 1);
+  displayText = displayText.substring(0, displayText.length - 1);
+  display.textContent = "" + displayText;
+  return [num1, displayText];
+}
+
+function backSpace2() {
+  operator = operator.toString();
+  if (operator == "") {
+    backButton.removeEventListener("click", backSpace2);
+    backButton.addEventListener("click", backSpace1)
+    buttons.removeEventListener("click", assignOperator, false);
+    buttons.addEventListener("click", addToNum1, false);
+    backSpace1();
+    return;
+  }
+  operator = "";
+  displayText = displayText.substring(0, displayText.length - 1);
+  display.textContent = "" + displayText;
+  return [operator, displayText];
+}
+
+function backSpace3() {
+  num2 = num2.toString();
+  if (num2 == "") {
+    backButton.removeEventListener("click", backSpace3);
+    backButton.addEventListener("click", backSpace2)
+    buttons.removeEventListener("click", addToNum2, false);
+    buttons.addEventListener("click", assignOperator, false);
+    backSpace2();
+    return;
+  }
+  num2 = num2.substring(0, num2.length - 1);
+  displayText = displayText.substring(0, displayText.length - 1);
+  display.textContent = "" + displayText;
+  return [num2, displayText];
 }
