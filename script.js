@@ -184,6 +184,9 @@ function addDecimalPoint2() {
 
 function backSpace1() {
   num1 = num1.toString();
+  if (num1.charAt(num1.length - 1) == ".") {
+    floatButton.addEventListener("click", addDecimalPoint1);
+  }
   num1 = num1.substring(0, num1.length - 1);
   displayText = displayText.substring(0, displayText.length - 1);
   display.textContent = "" + displayText;
@@ -208,11 +211,15 @@ function backSpace2() {
 
 function backSpace3() {
   num2 = num2.toString();
+  if (num2.charAt(num2.length - 1) == ".") {
+    floatButton.addEventListener("click", addDecimalPoint2);
+  }
   if (num2 == "") {
     backButton.removeEventListener("click", backSpace3);
     backButton.addEventListener("click", backSpace2)
     buttons.removeEventListener("click", addToNum2, false);
     buttons.addEventListener("click", assignOperator, false);
+    floatButton.removeEventListener("click", addDecimalPoint2);
     backSpace2();
     return;
   }
