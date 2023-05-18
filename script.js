@@ -149,7 +149,7 @@ function clear() {
   result = 0;
   buttons.removeEventListener("click", addToNum2, false);
   buttons.addEventListener("click", addToNum1, false);
-  floatButton.removeEventListener("click", addDecimalPoint1);
+  floatButton.addEventListener("click", addDecimalPoint1);
   floatButton.removeEventListener("click", addDecimalPoint2);
   backButton.removeEventListener("click", backSpace3);
   backButton.removeEventListener("click", backSpace2);
